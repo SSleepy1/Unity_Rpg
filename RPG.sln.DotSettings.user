@@ -1,4 +1,5 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AAnimator_002Ecs_002Fl_003AC_0021_003FUsers_003FME_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E2_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003Fa2342f9f0c984732a49d906903982be227800_003F95_003F1559d8b7_003FAnimator_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="E:\Unity\2022.3.57f1c2\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.dll" /&gt;&#xD;
   &lt;Assembly Path="E:\Unity\2022.3.57f1c2\Editor\Data\NetStandard\compat\2.1.0\shims\netstandard\System.Buffers.dll" /&gt;&#xD;
