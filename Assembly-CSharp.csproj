@@ -46,12 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Player.cs" />
+    <Compile Include="Assets\PlayerPrimaryAttack.cs" />
     <Compile Include="Assets\PlayerGroundedState.cs" />
     <Compile Include="Assets\PlayerState.cs" />
     <Compile Include="Assets\PlayerMoveState.cs" />
     <Compile Include="Assets\PlayerIdleState.cs" />
     <Compile Include="Assets\PlayerWallSlideState.cs" />
     <Compile Include="Assets\PlayerWallJumpState.cs" />
+    <Compile Include="Assets\PlayerAnimationTriggers.cs" />
     <Compile Include="Assets\PlayerJumpState.cs" />
     <Compile Include="Assets\PlayerDashState.cs" />
     <Compile Include="Assets\PlayerStateMachine.cs" />

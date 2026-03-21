@@ -44,6 +44,8 @@ public class Player : MonoBehaviour
     public PlayerDashState dashstate { get; private set; }
     public PlayerWallSlideState wallSlide { get; private set; }
     public PlayerWallJumpState   wallJump { get; private set; }
+    
+    public PlayerPrimaryAttack primaryattack { get; private set; }
     #endregion
     private void Awake()
     {
@@ -56,6 +58,8 @@ public class Player : MonoBehaviour
         dashstate = new PlayerDashState(this, stateMachine, "Dash");
         wallSlide = new PlayerWallSlideState(this, stateMachine, "WallSlide");
         wallJump = new PlayerWallJumpState(this,stateMachine, "Jump");
+
+        primaryattack = new PlayerPrimaryAttack(this, stateMachine, "Attack");
     }
 
     private void Start()
@@ -73,6 +77,9 @@ public class Player : MonoBehaviour
         
         CheckForDashInput();
     }
+
+    //在攻击动作最后一帧设置事件，将triggerCalled设置为true，作为攻击动作退出条件
+    public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();   
 
     private void CheckForDashInput()
     {

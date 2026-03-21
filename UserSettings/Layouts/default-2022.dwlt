@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -219,8 +219,8 @@ MonoBehaviour:
     y: 0
     width: 502
     height: 770
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -374,14 +374,14 @@ MonoBehaviour:
     - {fileID: -7510100918689552110, guid: 4e181ee4870f7604bba58ead4c8d19fa, type: 2}
     - {fileID: 4159282895065677963, guid: 4e181ee4870f7604bba58ead4c8d19fa, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.97473687
+    - e00: 0.8285264
       e01: 0
       e02: 0
-      e03: -0.73685956
+      e03: -66.37626
       e10: 0
-      e11: 0.97473687
+      e11: 0.8285264
       e12: 0
-      e13: 189.79474
+      e13: 177.77545
       e20: 0
       e21: 0
       e22: 1
@@ -817,9 +817,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -3.6983945, y: -1.5275432, z: -9.938216}
+    m_Target: {x: 0.24777494, y: 0.7250655, z: -9.938216}
     speed: 2
-    m_Value: {x: -3.4360635, y: -1.5661317, z: -9.935657}
+    m_Value: {x: 0.24777494, y: 0.7250655, z: -9.938216}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -871,7 +871,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 5.9439273
     speed: 2
-    m_Value: 5.6879687
+    m_Value: 5.9439273
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -933,9 +933,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 26620000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 18fbffff40620000
+      m_ExpandedIDs: 18fbffff42620000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1094,7 +1094,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 25152
+  m_LastSelectedObjectID: 25184
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1357,7 +1357,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials
+    - Assets
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1365,16 +1365,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 50
   m_LastFolders:
-  - Assets/Materials
+  - Assets
   m_LastFoldersGridSize: 50
   m_LastProjectPath: E:\Unity\RPG
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 20630000
-    m_LastClickedID: 25376
-    m_ExpandedIDs: 0000000006630000086300000a6300000c63000000ca9a3b
+    m_SelectedIDs: 08630000
+    m_LastClickedID: 25352
+    m_ExpandedIDs: 00000000086300000a6300000c6300000e63000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1402,7 +1402,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000006630000086300000a6300000c630000
+    m_ExpandedIDs: 00000000086300000a6300000c6300000e630000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
