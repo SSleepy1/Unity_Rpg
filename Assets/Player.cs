@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Attack details")] 
+    public Vector2[] attackMovement;
+    public bool isBusy { get;private set; }
     [Header("Move info")] 
     public float moveSpeed = 12f;
     public float jumpForce;
@@ -68,7 +71,15 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         
         stateMachine.Initialize(idlestate);
+    }
+    //协程来判断是否处于忙碌状态
+    public IEnumerator BusyFor(float _seconds)
+    {
+        isBusy = true;
         
+        yield return new WaitForSeconds(_seconds);
+        
+        isBusy = false;
     }
 
     private void Update()
@@ -101,13 +112,17 @@ public class Player : MonoBehaviour
             stateMachine.ChangeState(dashstate);
         }
     }
+    #region Velocity
+    public void ZeroVelocity() => rb.velocity = new Vector2(0, 0);
+
 
     public void SetVelocity(float _xVelocity, float _yVelocity)
     {
         rb.velocity = new Vector2(_xVelocity, _yVelocity);
         FlipController(_xVelocity);
     }
-
+    #endregion
+    #region Collision
     public bool IsGroundedDetected() =>
         Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
     
@@ -117,7 +132,8 @@ public class Player : MonoBehaviour
         Gizmos.DrawLine(groundCheck.position,new Vector3(groundCheck.position.x,groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position,new Vector3(wallCheck.position.x + wallCheckDistance,wallCheck.position.y));
     }
-
+    #endregion
+    #region Flip
     public void Flip()
     {
         facingDir *= -1;
@@ -136,4 +152,5 @@ public class Player : MonoBehaviour
             Flip();
         }
     }
+    #endregion
 }
