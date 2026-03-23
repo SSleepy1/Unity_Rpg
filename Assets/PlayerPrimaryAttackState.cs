@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerPrimaryAttack : PlayerState
+public class PlayerPrimaryAttackState : PlayerState
 {
     private int comboCounter;
 
     private float lastTimeAttacked;
     private float comboWindow = 2;
     
-    public PlayerPrimaryAttack(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerPrimaryAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
 
@@ -23,7 +23,16 @@ public class PlayerPrimaryAttack : PlayerState
         player.anim.SetInteger("ComboCounter",comboCounter);
         //player.anim.speed = 1.2f;  //加攻速（加快动画播放）
         
-        player.SetVelocity(player.attackMovement[comboCounter].x * player.facingDir,player.attackMovement[comboCounter].y);   //使每段攻击向前位移一段距离
+        //修复攻击转变方向时不转向的bug
+        float attackDir = player.facingDir;
+
+        if (xInput != 0)
+        {
+            attackDir = xInput;
+        }
+        
+
+        player.SetVelocity(player.attackMovement[comboCounter].x * attackDir,player.attackMovement[comboCounter].y);   //使每段攻击向前位移一段距离
 
         stateTimer = .1f;   //保证攻击时不会立即停下，过度更自然
     }
