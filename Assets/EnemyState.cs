@@ -6,7 +6,8 @@ public class EnemyState
 {
     
     protected EnemyStateMachine stateMachine;
-    protected Enemy EnemyBaseBase;
+    protected Enemy EnemyBase;
+    protected Rigidbody2D rb;
 
     private string animBoolName;
     
@@ -15,7 +16,7 @@ public class EnemyState
 
     public EnemyState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName)
     {
-        this.EnemyBaseBase = _enemyBase;
+        this.EnemyBase = _enemyBase;
         this.stateMachine = _stateMachine;
         this.animBoolName = _animBoolName;
     }
@@ -28,11 +29,17 @@ public class EnemyState
     public virtual void Enter()
     {
         triggerCalled = false;
-        EnemyBaseBase.anim.SetBool(animBoolName, true);
+        rb = EnemyBase.rb;
+        EnemyBase.anim.SetBool(animBoolName, true);
     }
 
     public virtual void Exit()
     {
-        EnemyBaseBase.anim.SetBool(animBoolName, false);
+        EnemyBase.anim.SetBool(animBoolName, false);
     }
+
+    public virtual void AnimationFinishTrigger()
+    {
+        triggerCalled = true;
+    }   
 }

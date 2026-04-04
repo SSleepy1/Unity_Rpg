@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
+    [SerializeField]protected LayerMask whatIsPlayer;
     [Header("Move info")] 
     public float moveSpeed;
     public float idleTime;
+    [Header("Attack info")]
+    public float attackDistance;
+    public float attackCooldown;
+    [HideInInspector] public float lastTimeAttacked;
+    
     
     public EnemyStateMachine stateMachine { get; private set; }
 
@@ -19,6 +25,22 @@ public class Enemy : Entity
     protected override void Update()
     {
         base.Update();
+        
         stateMachine.currentState.Update();
+        
+    }
+    
+    public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+    
+    //返回一个有关射线投射检测到的对象的返回信息
+    public virtual RaycastHit2D IsPlayerDetcted() => Physics2D.Raycast(wallCheck.position,Vector2.right*facingDir,50,whatIsPlayer);
+
+
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+        
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position,new Vector3(transform.position.x + attackDistance * facingDir,transform.position.y));
     }
 }
