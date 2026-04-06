@@ -17,6 +17,8 @@ public class PlayerPrimaryAttackState : PlayerState
     {
         base.Enter();
 
+        float currentXInput = Input.GetAxisRaw("Horizontal");
+
         if (comboCounter > 2 || Time.time >= lastTimeAttacked +  comboWindow)
             comboCounter = 0;
         
@@ -26,11 +28,14 @@ public class PlayerPrimaryAttackState : PlayerState
         //修复攻击转变方向时不转向的bug
         float attackDir = player.facingDir;
 
-        if (xInput != 0)
+        if (currentXInput != 0)
         {
-            attackDir = xInput;
+            attackDir = Mathf.Sign(currentXInput);
+
+            //但如果攻击位移很小或为0，SetVelocity中的 FlipController可能不会触发翻转，所以手动调用一次是更保险的做法。
+            player.FlipController(attackDir);
         }
-        
+
 
         player.SetVelocity(player.attackMovement[comboCounter].x * attackDir,player.attackMovement[comboCounter].y);   //使每段攻击向前位移一段距离
 
