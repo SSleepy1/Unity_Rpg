@@ -233,7 +233,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 12
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -257,6 +257,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb097a46dc845a844af1c3031b1c1048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackDirection: {x: 7, y: 12}
+  knockbackDuration: 0.07
   attackCheck: {fileID: 11901389}
   attackCheckRadius: 1.1
   groundCheck: {fileID: 1913962401}
@@ -600,6 +602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63790946f2f667e4084855b3fb66ae8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackDirection: {x: 0, y: 0}
+  knockbackDuration: 0
   attackCheck: {fileID: 1438509719}
   attackCheckRadius: 0.8
   groundCheck: {fileID: 1512926245}
