@@ -14002,6 +14002,7 @@ MonoBehaviour:
   cooldown: 0
   clonePrefeb: {fileID: 5366304846419468360, guid: a712d6ec660cf944cae3cf11c0ae68f7, type: 3}
   cloneDuration: 1.5
+  canAttack: 1
 --- !u!1 &1913962400
 GameObject:
   m_ObjectHideFlags: 0
