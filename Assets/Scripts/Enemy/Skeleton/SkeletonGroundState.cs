@@ -15,7 +15,7 @@ public class SkeletonGroundState : EnemyState
     {
         base.Enter();
 
-        player = GameObject.Find("Player").transform;
+        player = PlayerManager.instance.player.transform;
     }
     public override void Update()
     {
