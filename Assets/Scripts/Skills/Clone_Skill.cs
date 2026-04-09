@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Clone_Skill : Skill
+{
+    [Header("Clone info")]
+    [SerializeField] private GameObject clonePrefeb;    //创建一个克隆复制体
+    [SerializeField] private float cloneDuration;
+
+    public void CreateClone(Transform _clonePosition)
+    {
+        GameObject newclone = Instantiate(clonePrefeb);
+        
+        newclone.GetComponent<Clone_Skill_Coontroller>().SetupClone(_clonePosition,cloneDuration);
+    }
+}
