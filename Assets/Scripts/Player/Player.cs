@@ -7,6 +7,7 @@ public class Player : Entity
 {
     [Header("Attack details")] 
     public Vector2[] attackMovement;
+    public float counterAttackDuration;
 
     
     public bool isBusy { get;private set; }
@@ -31,8 +32,8 @@ public class Player : Entity
     public PlayerDashState dashstate { get; private set; }
     public PlayerWallSlideState wallSlide { get; private set; }
     public PlayerWallJumpState   wallJump { get; private set; }
-    
-    public PlayerPrimaryAttackState primaryattack { get; private set; }
+    public PlayerPrimaryAttackState primaryAttack { get; private set; }
+    public PlayerCounterAttackState  counterAttack { get; private set; }
     #endregion
     protected override void Awake()
     {
@@ -46,8 +47,9 @@ public class Player : Entity
         dashstate = new PlayerDashState(this, stateMachine, "Dash");
         wallSlide = new PlayerWallSlideState(this, stateMachine, "WallSlide");
         wallJump = new PlayerWallJumpState(this,stateMachine, "Jump");
-
-        primaryattack = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
+        
+        primaryAttack = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
+        counterAttack = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
     }
 
     protected override void Start()
@@ -74,7 +76,7 @@ public class Player : Entity
         isBusy = false;
     }
 
-    //在攻击动作最后一帧设置事件，将triggerCalled设置为true，作为攻击动作退出条件
+    //在动作最后一帧设置事件，将triggerCalled设置为true，作为攻击动作退出条件
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();   
 
     private void CheckForDashInput()
