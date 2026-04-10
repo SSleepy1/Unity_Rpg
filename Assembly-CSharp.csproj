@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Enemy\EnemyStateMachine.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMoveState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimationTriggers.cs" />
+    <Compile Include="Assets\Sword_Skill_Controller.cs" />
     <Compile Include="Assets\Scripts\Skills\Clone_Skill.cs" />
     <Compile Include="Assets\Scripts\Skills\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonIdleState.cs" />
