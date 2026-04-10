@@ -48,6 +48,7 @@
     <Compile Include="Assets\Scripts\Entity.cs" />
     <Compile Include="Assets\Scripts\Skills\Skill.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerWallSlideState.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAimSwordState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerDashState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\Enemy_SkeletonAnimationTrigger.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonAttackState.cs" />
@@ -76,9 +77,11 @@
     <Compile Include="Assets\Scripts\Skills\SkillManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonIdleState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerIdleState.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerCatchSwordState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAirState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStateMachine.cs" />
+    <Compile Include="Assets\Scripts\Skills\Sword_Skill.cs" />
     <Reference Include="UnityEngine">
       <HintPath>E:\Unity\2022.3.57f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

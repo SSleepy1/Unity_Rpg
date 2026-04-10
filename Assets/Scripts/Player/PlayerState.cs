@@ -28,10 +28,6 @@ public class PlayerState
         rb = player.rb;
         triggerCalled = false;
     }
-    public virtual void Exit()
-    {
-        player.anim.SetBool(animBoolName, false);
-    }
     public virtual void Update()
     {
         stateTimer -= Time.deltaTime;
@@ -39,6 +35,10 @@ public class PlayerState
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
         player.anim.SetFloat("yVelocity", rb.velocity.y);
+    }
+    public virtual void Exit()
+    {
+        player.anim.SetBool(animBoolName, false);
     }
 
     public virtual void AnimationFinishTrigger()
