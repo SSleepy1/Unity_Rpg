@@ -509,7 +509,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -626,6 +626,7 @@ MonoBehaviour:
   jumpForce: 15
   dashSpeed: 25
   dashDuration: 0.2
+  sword: {fileID: 0}
 --- !u!4 &570891014
 Transform:
   m_ObjectHideFlags: 0
@@ -13743,7 +13744,7 @@ MonoBehaviour:
   m_Follow: {fileID: 570891014}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 6
+    OrthographicSize: 7
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -14050,8 +14051,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 0
   swordPrefab: {fileID: 6376302340286919171, guid: a25d91395160a954daa91d74e52d0560, type: 3}
-  launchForce: {x: 15, y: 15}
-  swordGravity: 4
+  launchForce: {x: 35, y: 25}
+  swordGravity: 4.5
   numberOfDots: 20
   spaceBetweenDots: 0.07
   dotPrefab: {fileID: 7151839149289075677, guid: 9f552ef78854ac84d815b568bb9328e1, type: 3}
@@ -14376,10 +14377,6 @@ PrefabInstance:
     - target: {fileID: 6376302340286919171, guid: a25d91395160a954daa91d74e52d0560, type: 3}
       propertyPath: m_Name
       value: Sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 6376302340286919171, guid: a25d91395160a954daa91d74e52d0560, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
