@@ -14,11 +14,13 @@ public class Sword_Skill_Controller : MonoBehaviour
    private bool canRotate = true;
    private bool isReturning;
 
-   public float bounceSpeed;
-   public bool isBouncing = true;
-   public int amountOfBounce = 4;
-   public List<Transform> enemyTarget;
+   [Header("Bounce info")]
+   [SerializeField]private float bounceSpeed;
+   private bool isBouncing;
+   private int amountOfBounce;
+   private List<Transform> enemyTarget;
    private int targetIndex;
+
    private void Awake()
    {
       anim = GetComponentInChildren<Animator>();
@@ -26,14 +28,22 @@ public class Sword_Skill_Controller : MonoBehaviour
       cd = GetComponent<CircleCollider2D>();
    }
 
-   public void SetupSword(Vector2 _dir, float _gravityScale,Player _player)
+   public void SetupSword(Vector2 _dir, float _gravityScale, Player _player)
    {
       player = _player;
-      
+
       rb.velocity = _dir;
       rb.gravityScale = _gravityScale;
-      
-      anim.SetBool("Rotate",true);
+
+      anim.SetBool("Rotate", true);
+   }
+
+   public void SetupBounce(bool _isBouncing, int _amountOfBounce)
+   {
+      isBouncing = _isBouncing;
+      amountOfBounce = _amountOfBounce;
+
+      enemyTarget = new List<Transform>();
    }
 
    public void ReturnSword()
@@ -61,6 +71,11 @@ public class Sword_Skill_Controller : MonoBehaviour
          }
       }
 
+      BounceLogic();
+   }
+
+   private void BounceLogic()
+   {
       if (isBouncing && enemyTarget.Count > 0)
       {
          transform.position = Vector2.MoveTowards(transform.position,enemyTarget[targetIndex].position,bounceSpeed * Time.deltaTime);
@@ -83,7 +98,7 @@ public class Sword_Skill_Controller : MonoBehaviour
          }
       }
    }
-   
+
    private void OnTriggerEnter2D(Collider2D collision)
    {
       if (isReturning)
