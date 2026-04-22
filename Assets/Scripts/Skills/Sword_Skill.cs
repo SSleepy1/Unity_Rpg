@@ -16,9 +16,14 @@ public class Sword_Skill : Skill
 {
     public SwordType swordType = SwordType.Regular;
 
+    [FormerlySerializedAs("amountOfBounce")]
     [Header("Bounce info")] 
-    [SerializeField] private int amountOfBounce;
+    [SerializeField] private int bounceAmount;
     [SerializeField] private float bounceGravity;
+    
+    [Header("Pierce info")]
+    [SerializeField] private int PierceAmount;
+    [SerializeField] private float pierceGravity;
     
     [Header("Skill info")] 
     [SerializeField] private GameObject swordPrefab;
@@ -41,10 +46,29 @@ public class Sword_Skill : Skill
         base.Start();
         
         GenerateDots();
+
+        SetUpGravity();
+    }
+
+    private void SetUpGravity()
+    {
+        switch (swordType)
+        {
+            case SwordType.Bounce:
+                swordGravity = bounceGravity;
+                break;
+            case SwordType.Pierce:
+                swordGravity = pierceGravity;
+                break;
+            default:
+                break;
+        }
     }
 
     protected override void Update()
     {
+        SetUpGravity();
+        
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             finalDir = new Vector2(AimDirection().normalized.x * launchForce.x, AimDirection().normalized.y * launchForce.y);
@@ -64,11 +88,18 @@ public class Sword_Skill : Skill
         GameObject newSword = Instantiate(swordPrefab,player.transform.position,transform.rotation);
         Sword_Skill_Controller newSwordScript = newSword.GetComponent<Sword_Skill_Controller>();
 
-        if (swordType == SwordType.Bounce)
+        switch (swordType)
         {
-            swordGravity = bounceGravity;
-            newSwordScript.SetupBounce(true,amountOfBounce);
+            case SwordType.Bounce:
+                newSwordScript.SetupBounce(true,bounceAmount);
+                break;
+            case SwordType.Pierce:
+                newSwordScript.SetupPierce(PierceAmount);
+                break;
+            default:
+                break;
         }
+
 
         newSwordScript.SetupSword(finalDir,swordGravity,player);
         
