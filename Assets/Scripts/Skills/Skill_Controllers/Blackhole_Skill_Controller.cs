@@ -9,32 +9,74 @@ public class Blackhole_Skill_Controller : MonoBehaviour
     [SerializeField] private GameObject hotkeyPrefab;
     [SerializeField] private List<KeyCode> keyCodeList;
     
-    public float maxSize;
-    public float growSpeed;
-    public float shrinkSpeed;
-    public bool canGrow;
-    public bool canShrink;
+    private float maxSize;
+    private float growSpeed;
+    private float shrinkSpeed;
 
+    private bool canGrow = true;
+    private bool canShrink;
     private bool canCreatedHotKeys = true;
     private bool canAttackReleased;
-    public int amountOfAttacks = 4;
-    public float cloneAttackCooldown = .3f;
+    
+    private int amountOfAttacks = 4;
+    private float cloneAttackCooldown = .3f;
     private float cloneAttackTimer;
 
     private List<Transform> targets = new List<Transform>();
     private List<GameObject> CreatedHotkeys = new List<GameObject>();
+
+    public void SetupBlackhole(float _maxSize, float _growSpeed, float _shrinkSpeed,int _amountOfAttacks,float _cloneAttackCooldown)
+    {
+        maxSize = _maxSize;
+        growSpeed = _growSpeed;
+        shrinkSpeed = _shrinkSpeed;
+        amountOfAttacks = _amountOfAttacks;
+        cloneAttackCooldown = _cloneAttackCooldown;
+    }
+
     private void Update()
     {
         cloneAttackTimer -= Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            DestroyHotkeys();
-            canAttackReleased = true;
-            canCreatedHotKeys = false;
+            ReleaseCloneAttack();
         }
 
         
+        CloneAttackLogic();
+        
+        if (canGrow && !canShrink)
+        {
+            Vector2 targetScale = new Vector2(maxSize, maxSize);
+            //它表示从transform.localScale到Vector2(maxSize,maxSize)之间，按照Time.time * growSpeed这个百分比来取值
+            transform.localScale = Vector2.Lerp(transform.localScale, targetScale, Time.deltaTime * growSpeed);
+            if (Vector2.Distance(transform.localScale, targetScale) < 0.01f)
+                transform.localScale = targetScale;
+            //transform.localScale = Vector2.MoveTowards(transform.localScale,new Vector2(maxSize,maxSize),growSpeed * Time.deltaTime);
+        }
+
+        if (canShrink)
+        {
+            Vector2 targetScale = new Vector2(0,0);
+            transform.localScale = Vector2.Lerp(transform.localScale, targetScale, Time.deltaTime * shrinkSpeed);
+            if (Vector2.Distance(transform.localScale, targetScale) < 0.01f)
+            {
+                transform.localScale = targetScale;
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void ReleaseCloneAttack()
+    {
+        DestroyHotkeys();
+        canAttackReleased = true;
+        canCreatedHotKeys = false;
+    }
+
+    private void CloneAttackLogic()
+    {
         if (cloneAttackTimer < 0 && canAttackReleased && targets.Count != 0)
         {
             cloneAttackTimer = cloneAttackCooldown;
@@ -55,27 +97,6 @@ public class Blackhole_Skill_Controller : MonoBehaviour
             {
                 canShrink = true;
                 canAttackReleased = false;
-            }
-        }
-        
-        if (canGrow && !canShrink)
-        {
-            Vector2 targetScale = new Vector2(maxSize, maxSize);
-            //它表示从transform.localScale到Vector2(maxSize,maxSize)之间，按照Time.time * growSpeed这个百分比来取值
-            transform.localScale = Vector2.Lerp(transform.localScale, targetScale, Time.deltaTime * growSpeed);
-            if (Vector2.Distance(transform.localScale, targetScale) < 0.01f)
-                transform.localScale = targetScale;
-            //transform.localScale = Vector2.MoveTowards(transform.localScale,new Vector2(maxSize,maxSize),growSpeed * Time.deltaTime);
-        }
-
-        if (canShrink)
-        {
-            Vector2 targetScale = new Vector2(0,0);
-            transform.localScale = Vector2.Lerp(transform.localScale, targetScale, Time.deltaTime * shrinkSpeed);
-            if (Vector2.Distance(transform.localScale, targetScale) < 0.01f)
-            {
-                transform.localScale = targetScale;
-                Destroy(gameObject);
             }
         }
     }
