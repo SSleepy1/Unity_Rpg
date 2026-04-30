@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAirState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStateMachine.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerBlackHoleState.cs" />
     <Compile Include="Assets\Scripts\Skills\Sword_Skill.cs" />
     <Compile Include="Assets\Scripts\Skills\Skill_Controllers\Clone_Skill_Coontroller.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

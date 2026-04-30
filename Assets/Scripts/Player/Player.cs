@@ -39,6 +39,7 @@ public class Player : Entity
     public PlayerCounterAttackState  counterAttack { get; private set; }
     public PlayerAimSwordState aimSword { get; private set; }
     public PlayerCatchSwordState catchSword { get; private set; }
+    public PlayerBlackHoleState blackHole { get; private set; }
     #endregion
     protected override void Awake()
     {
@@ -58,6 +59,7 @@ public class Player : Entity
         
         aimSword = new PlayerAimSwordState(this, stateMachine, "AimSword");
         catchSword = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
+        blackHole = new PlayerBlackHoleState(this, stateMachine, "Jump");
     }
 
     protected override void Start()
@@ -86,6 +88,11 @@ public class Player : Entity
     {
         stateMachine.ChangeState(catchSword);
         Destroy(sword);
+    }
+
+    public void ExitBlackHoleAbility()
+    {
+        stateMachine.ChangeState(airstate);
     }
 
     //协程来判断是否处于忙碌状态
