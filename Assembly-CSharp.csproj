@@ -61,12 +61,14 @@
     <Compile Include="Assets\Scripts\Skills\Skill_Controllers\Blackhole_Skill_Controller.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerJumpState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCounterAttackState.cs" />
+    <Compile Include="Assets\Scripts\Skills\Skill_Controllers\Crystal_Skill_Controller.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerPrimaryAttackState.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\EntityFX.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerWallJumpState.cs" />
     <Compile Include="Assets\Scripts\Skills\Dash_Skill.cs" />
+    <Compile Include="Assets\Scripts\Skills\Crystal_Skill.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerGroundedState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonStunnedState.cs" />
