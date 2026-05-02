@@ -90,11 +90,6 @@ public class Player : Entity
         Destroy(sword);
     }
 
-    public void ExitBlackHoleAbility()
-    {
-        stateMachine.ChangeState(airstate);
-    }
-
     //协程来判断是否处于忙碌状态
     public IEnumerator BusyFor(float _seconds)
     {
