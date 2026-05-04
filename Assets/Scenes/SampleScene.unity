@@ -16037,6 +16037,8 @@ MonoBehaviour:
   clonePrefeb: {fileID: 5366304846419468360, guid: a712d6ec660cf944cae3cf11c0ae68f7, type: 3}
   cloneDuration: 1.5
   canAttack: 1
+  createCloneOnDashStart: 0
+  createCloneOnDashOver: 0
 --- !u!114 &1803769648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16107,6 +16109,14 @@ MonoBehaviour:
   CanExplode: 1
   CanMoveToEnemy: 1
   MoveSpeed: 10
+  canUseMultiStacks: 1
+  amountOfStacks: 3
+  multiStackCooldown: 4
+  useTimeWindow: 2.5
+  crystalLeft:
+  - {fileID: 3338925682916710538, guid: 2ce77683eccb42f4bb37c3595e0c9022, type: 3}
+  - {fileID: 3338925682916710538, guid: 2ce77683eccb42f4bb37c3595e0c9022, type: 3}
+  - {fileID: 3338925682916710538, guid: 2ce77683eccb42f4bb37c3595e0c9022, type: 3}
 --- !u!1 &1894878566
 GameObject:
   m_ObjectHideFlags: 0
