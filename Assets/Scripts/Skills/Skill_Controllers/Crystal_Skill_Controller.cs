@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Crystal_Skill_Controller : MonoBehaviour
 {
@@ -17,12 +18,20 @@ public class Crystal_Skill_Controller : MonoBehaviour
     private bool canGrow;
     private float growSpeed = 5;
     
-    public void SetupCrystal(float _crystalDuration,bool _canExplaode,bool _canMove, float _moveSpeed)
+    private Transform startPosition;
+    private Transform closestTarget;
+    public void SetupCrystal(float _crystalDuration,bool _canExplaode,bool _canMove, float _moveSpeed,Transform _closestTarget)
     {
         crystalExistTimer = _crystalDuration;
         canExplode = _canExplaode;
         canMove = _canMove;
         moveSpeed = _moveSpeed;
+        closestTarget = _closestTarget;
+    }
+
+    private void Start()
+    {
+       startPosition = transform;
     }
 
     private void Update()
@@ -32,6 +41,24 @@ public class Crystal_Skill_Controller : MonoBehaviour
         if (crystalExistTimer < 0)
         {
             FinishCrystal();
+        }
+
+        if (canMove)
+        {
+            transform.position =
+                Vector2.MoveTowards(transform.position, closestTarget.position, moveSpeed * Time.deltaTime);
+
+            if (Vector2.Distance(startPosition.position, transform.position) > 10)
+            {
+                FinishCrystal();
+                canMove = false;
+            }
+
+            if (Vector2.Distance(transform.position, closestTarget.position) < 1)
+            {
+                FinishCrystal();
+                canMove = false;
+            }
         }
 
         if (canGrow)
