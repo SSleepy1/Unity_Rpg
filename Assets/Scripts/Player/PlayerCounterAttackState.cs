@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCounterAttackState : PlayerState
 {
+    private bool canCreateClone;
     public PlayerCounterAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
@@ -31,6 +32,12 @@ public class PlayerCounterAttackState : PlayerState
                 {
                     stateTimer = 10;    //给一个大值，避免因为状态时间退出反击状态时，没播放完反击动画
                     player.anim.SetBool("SuccessfulCounterAttack",true);
+
+                    if (canCreateClone)
+                    {
+                        canCreateClone = false;
+                        player.skill.clone.CreateCloneOnCounterAttack(hit.transform);
+                    }
                 }
             }
         }

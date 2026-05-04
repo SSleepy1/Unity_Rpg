@@ -10,10 +10,44 @@ public class Clone_Skill : Skill
     [Space] 
     [SerializeField] private bool canAttack;
 
+    [SerializeField] private bool createCloneOnDashStart;
+    [SerializeField] private bool createCloneOnDashOver;
+    [SerializeField] private bool canCreateCloneOnCounterAttack;
+
     public void CreateClone(Transform _clonePosition,Vector3 _offset)
     {
         GameObject newclone = Instantiate(clonePrefeb);
         
         newclone.GetComponent<Clone_Skill_Coontroller>().SetupClone(_clonePosition,cloneDuration,canAttack,_offset,FindClosetEnemy(newclone.transform));
+    }
+
+    public void CreateCloneOnDashStart()
+    {
+        if (createCloneOnDashStart)
+        {
+            CreateClone(player.transform,Vector3.zero);
+        }
+    }
+
+    public void CreateClongOnDashOver()
+    {
+        if (createCloneOnDashOver)
+        {
+            CreateClone(player.transform,Vector3.zero);
+        }
+    }
+
+    public void CreateCloneOnCounterAttack(Transform _enemyTransform)
+    {
+        if (canCreateCloneOnCounterAttack)
+        {
+            StartCoroutine(CreateCloneWithDelay(_enemyTransform, new Vector3(2 * player.facingDir, 0)));
+        }
+    }
+
+    private IEnumerator CreateCloneWithDelay(Transform _transform,Vector3 _offset)
+    {
+        yield return new WaitForSeconds(.4f);
+            CreateClone(_transform,_offset);
     }
 }
