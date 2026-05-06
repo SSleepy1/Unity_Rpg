@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 public class Crystal_Skill_Controller : MonoBehaviour
 {
@@ -17,9 +18,11 @@ public class Crystal_Skill_Controller : MonoBehaviour
 
     private bool canGrow;
     private float growSpeed = 5;
+    private float maxExplodeDistance = 10;
     
-    private Transform startPosition;
+    private Vector3 startPosition;
     private Transform closestTarget;
+    [SerializeField] private LayerMask whatIsEnemy;
     public void SetupCrystal(float _crystalDuration,bool _canExplaode,bool _canMove, float _moveSpeed,Transform _closestTarget)
     {
         crystalExistTimer = _crystalDuration;
@@ -29,9 +32,18 @@ public class Crystal_Skill_Controller : MonoBehaviour
         closestTarget = _closestTarget;
     }
 
+    public void ChooseRandomEnemy()
+    {
+        float radius = SkillManager.instance.blackhole.GetBlackholeRadius();
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position,radius,whatIsEnemy);
+
+        if(colliders.Length > 0)
+            closestTarget = colliders[Random.Range(0, colliders.Length)].transform;
+    }
+
     private void Start()
     {
-       startPosition = transform;
+       startPosition = transform.position;
     }
 
     private void Update()
@@ -45,10 +57,16 @@ public class Crystal_Skill_Controller : MonoBehaviour
 
         if (canMove)
         {
+            if (closestTarget == null)
+            {
+                FinishCrystal();
+                canMove = false;
+                return;
+            }
             transform.position =
                 Vector2.MoveTowards(transform.position, closestTarget.position, moveSpeed * Time.deltaTime);
 
-            if (Vector2.Distance(startPosition.position, transform.position) > 10)
+            if (Vector2.Distance(startPosition, transform.position) > maxExplodeDistance)
             {
                 FinishCrystal();
                 canMove = false;

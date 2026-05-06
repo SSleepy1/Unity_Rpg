@@ -15,6 +15,7 @@ public class PlayerCounterAttackState : PlayerState
 
         stateTimer = player.counterAttackDuration;
         player.anim.SetBool("SuccessfulCounterAttack",false);
+        canCreateClone = true;
     }
     public override void Update()
     {
