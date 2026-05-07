@@ -13,7 +13,6 @@ public class PlayerDashState : PlayerState
         base.Enter();
 
         player.skill.clone.CreateCloneOnDashStart();
-        
         stateTimer = player.dashDuration;
     }
     public override void Update()

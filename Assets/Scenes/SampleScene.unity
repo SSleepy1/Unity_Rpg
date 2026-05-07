@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 109010502}
   - component: {fileID: 109010501}
   - component: {fileID: 109010505}
-  - component: {fileID: 109010506}
+  - component: {fileID: 109010507}
   m_Layer: 7
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.2
   hitMat: {fileID: 2100000, guid: 62a3e4d6441ee2441a435d77e075ba58, type: 2}
---- !u!114 &109010506
+--- !u!114 &109010507
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,9 +324,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 109010500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d42ef06ee4c9bcf4cb6cf001003fbc8e, type: 3}
+  m_Script: {fileID: 11500000, guid: e2c073cf7587b4d4cb4d4b1d1667ce26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: 
   damage:
     baseValue: 10
     modifiers: 
@@ -607,7 +610,7 @@ GameObject:
   - component: {fileID: 570891016}
   - component: {fileID: 570891015}
   - component: {fileID: 570891017}
-  - component: {fileID: 570891018}
+  - component: {fileID: 570891019}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -744,7 +747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.2
   hitMat: {fileID: 2100000, guid: 62a3e4d6441ee2441a435d77e075ba58, type: 2}
---- !u!114 &570891018
+--- !u!114 &570891019
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -753,9 +756,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 570891012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d42ef06ee4c9bcf4cb6cf001003fbc8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 03af0864d879db44e80c0b896e4ac6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  strength:
+    baseValue: 2
+    modifiers: 
   damage:
     baseValue: 10
     modifiers: 

@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerWallJumpState.cs" />
     <Compile Include="Assets\Scripts\Skills\Dash_Skill.cs" />
     <Compile Include="Assets\Scripts\Skills\Crystal_Skill.cs" />
+    <Compile Include="Assets\Scripts\EnemyStats.cs" />
     <Compile Include="Assets\Scripts\Stat.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerGroundedState.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Assets\Scripts\Character Stats.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAirState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStateMachine.cs" />
+    <Compile Include="Assets\Scripts\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBlackHoleState.cs" />
     <Compile Include="Assets\Scripts\Skills\Sword_Skill.cs" />
     <Compile Include="Assets\Scripts\Skills\Skill_Controllers\Clone_Skill_Coontroller.cs" />

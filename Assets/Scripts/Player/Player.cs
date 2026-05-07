@@ -24,7 +24,6 @@ public class Player : Entity
     public SkillManager skill { get;private set; }
     public GameObject sword { get; private set; }
 
-
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
 
