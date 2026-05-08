@@ -285,11 +285,26 @@ MonoBehaviour:
   strength:
     baseValue: 0
     modifiers: 
-  damage:
-    baseValue: 10
+  agility:
+    baseValue: 0
+    modifiers: 
+  intelligence:
+    baseValue: 0
+    modifiers: 
+  vitality:
+    baseValue: 0
     modifiers: 
   maxHealth:
     baseValue: 1000
+    modifiers: 
+  armor:
+    baseValue: 0
+    modifiers: 
+  evasion:
+    baseValue: 0
+    modifiers: 
+  damage:
+    baseValue: 10
     modifiers: 
   currentHealth: 0
 --- !u!70 &109010508
@@ -752,11 +767,26 @@ MonoBehaviour:
   strength:
     baseValue: 2
     modifiers: 
-  damage:
-    baseValue: 10
+  agility:
+    baseValue: 0
+    modifiers: 
+  intelligence:
+    baseValue: 0
+    modifiers: 
+  vitality:
+    baseValue: 0
     modifiers: 
   maxHealth:
     baseValue: 1000
+    modifiers: 
+  armor:
+    baseValue: 20
+    modifiers: 
+  evasion:
+    baseValue: 70
+    modifiers: 
+  damage:
+    baseValue: 10
     modifiers: 
   currentHealth: 0
 --- !u!1 &814164076
