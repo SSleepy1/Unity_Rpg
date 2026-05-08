@@ -18,4 +18,10 @@ public class EnemyStats : CharacterStats
         
         enemy.DamageEffect();
     }
+
+    public override void Die()
+    {
+        base.Die();
+        enemy.Die();
+    }
 }
