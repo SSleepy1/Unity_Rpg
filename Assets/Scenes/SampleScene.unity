@@ -294,6 +294,15 @@ MonoBehaviour:
   vitality:
     baseValue: 0
     modifiers: 
+  damage:
+    baseValue: 10
+    modifiers: 
+  critChance:
+    baseValue: 0
+    modifiers: 
+  critPower:
+    baseValue: 0
+    modifiers: 
   maxHealth:
     baseValue: 1000
     modifiers: 
@@ -302,9 +311,6 @@ MonoBehaviour:
     modifiers: 
   evasion:
     baseValue: 0
-    modifiers: 
-  damage:
-    baseValue: 10
     modifiers: 
   currentHealth: 0
 --- !u!70 &109010508
@@ -776,6 +782,15 @@ MonoBehaviour:
   vitality:
     baseValue: 0
     modifiers: 
+  damage:
+    baseValue: 10
+    modifiers: 
+  critChance:
+    baseValue: 99
+    modifiers: 
+  critPower:
+    baseValue: 90
+    modifiers: 
   maxHealth:
     baseValue: 1000
     modifiers: 
@@ -784,9 +799,6 @@ MonoBehaviour:
     modifiers: 
   evasion:
     baseValue: 70
-    modifiers: 
-  damage:
-    baseValue: 10
     modifiers: 
   currentHealth: 0
 --- !u!1 &814164076
