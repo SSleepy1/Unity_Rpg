@@ -319,10 +319,10 @@ MonoBehaviour:
     baseValue: 5
     modifiers: 
   iceDamage:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   lightingDamage:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   isIgnited: 0
   isChilled: 0
@@ -801,7 +801,7 @@ MonoBehaviour:
     baseValue: 10
     modifiers: 
   critChance:
-    baseValue: 99
+    baseValue: 0
     modifiers: 
   critPower:
     baseValue: 90
@@ -813,7 +813,7 @@ MonoBehaviour:
     baseValue: 20
     modifiers: 
   evasion:
-    baseValue: 70
+    baseValue: 0
     modifiers: 
   magicResistance:
     baseValue: 1

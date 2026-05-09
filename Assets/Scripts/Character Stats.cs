@@ -71,6 +71,67 @@ public class CharacterStats : MonoBehaviour
         totalMagicalDamage = CheckTargetResistance(_targetStats, totalMagicalDamage);
 
         _targetStats.TakeDamage(totalMagicalDamage);
+
+        int maxDamage = Mathf.Max(_fireDamage, _iceDamage, _lightingDamage);
+        
+        if (maxDamage <= 0)
+        {
+            return;
+        }
+        
+        bool canApplyIgnite = false;
+        bool canApplyChill = false;
+        bool canApplyShock = false;
+        
+        GetRandomDominantElement(_fireDamage, _iceDamage, _lightingDamage,maxDamage,ref canApplyIgnite, ref canApplyChill, ref canApplyShock);
+
+        _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
+
+        
+    }
+
+    private static void GetRandomDominantElement(int _fireDamage, int _iceDamage, int _lightingDamage,int maxDamage
+        ,ref bool canApplyIgnite, ref bool canApplyChill, ref bool canApplyShock)
+    {
+        int equalCount = 0;
+        
+        if (_fireDamage == maxDamage) equalCount++;
+        if (_iceDamage == maxDamage) equalCount++;
+        if (_lightingDamage == maxDamage) equalCount++;
+        
+        int randomIndex = Random.Range(0, equalCount);
+        Debug.Log(randomIndex);
+        int currentIndex = 0;
+        
+        if (_fireDamage == maxDamage)
+        {
+            if (currentIndex == randomIndex)
+            {
+                canApplyIgnite = true;
+                Debug.Log("Ignite" + randomIndex);
+            }
+
+            currentIndex++;
+        }
+        
+        if (_iceDamage == maxDamage)
+        {
+            if (currentIndex == randomIndex)
+            {
+                canApplyChill = true;
+                Debug.Log("Chill"+ randomIndex);
+            }
+            currentIndex++;
+        }
+        
+        if (_lightingDamage == maxDamage)
+        {
+            if (currentIndex == randomIndex)
+            {
+                canApplyShock = true;
+                Debug.Log("Shock"+ randomIndex);
+            }
+        }
     }
 
     private static int CheckTargetResistance(CharacterStats _targetStats, int totalMagicalDamage)
@@ -82,10 +143,10 @@ public class CharacterStats : MonoBehaviour
 
     public void ApplyAilments(bool _ignite,bool _chill,bool _shock)
     {
-        if (isIgnited || isChilled || isShocked)
-        {
-            return;
-        }
+        // if (isIgnited || isChilled || isShocked)
+        // {
+        //     return;
+        // }
 
         isIgnited = _ignite;
         isChilled = _chill;
