@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerJumpState.cs" />
     <Compile Include="Assets\Scripts\Skills\Skill_Controllers\Crystal_Skill_Controller.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCounterAttackState.cs" />
+    <Compile Include="Assets\Scripts\HealthBar_UI.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerPrimaryAttackState.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />

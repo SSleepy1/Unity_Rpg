@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class SkeletonDeadState : EnemyState
 {
@@ -14,16 +15,20 @@ public class SkeletonDeadState : EnemyState
     {
         base.Enter();
         
+        Debug.Log("SkeletonDeadState Enter");
+        
         enemy.anim.SetBool(enemy.lastAnimBoolName,true);
         enemy.anim.speed = 0;
         enemy.cd.enabled = false;
-
+        
+        // rb.gravityScale = 3f;
         stateTimer = .15f;
     }
+
     public override void Update()
     {
         base.Update();
-
+    
         if (stateTimer > 0)
         {
             rb.velocity = new Vector2(0,10);

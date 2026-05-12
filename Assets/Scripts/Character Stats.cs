@@ -40,11 +40,16 @@ public class CharacterStats : MonoBehaviour
     private float igniteDamageTimer;
     private int igniteDamage;
 
-    [SerializeField]private int currentHealth;
+    private bool isDead;
+
+    public int currentHealth;
+
+    public System.Action onHealthChanged;
     protected virtual void Start()
     {
         critPower.SetDefaultValue(150);
-        currentHealth = maxHealth.GetValue();
+        currentHealth = GetMaxHealthValue();
+        onHealthChanged?.Invoke();
     }
 
     protected virtual void Update()
@@ -64,16 +69,30 @@ public class CharacterStats : MonoBehaviour
         if (shockedTimer < 0)
             isShocked = false;
         
+        // if (igniteDamageTimer < 0 && isIgnited)
+        // {
+        //     if (isDead)
+        //         return;
+        //     
+        //     Debug.Log("Ignite" + igniteDamage);
+        //
+        //     currentHealth -= igniteDamage;
+        //
+        //     if (currentHealth < 0)
+        //     {
+        //         Die();
+        //     }
+        //
+        //     igniteDamageTimer = igniteDamageCooldown;
+        // }
         if (igniteDamageTimer < 0 && isIgnited)
         {
+            if (isDead)
+                return;
+            
             Debug.Log("Ignite" + igniteDamage);
 
-            currentHealth -= igniteDamage;
-
-            if (currentHealth < 0)
-            {
-                Die();
-            }
+            DecreaseHealthBy(igniteDamage);
 
             igniteDamageTimer = igniteDamageCooldown;
         }
@@ -209,14 +228,26 @@ public class CharacterStats : MonoBehaviour
 
     public void SetupIgniteDamage(int _damage) => igniteDamage = _damage;
     
-    public virtual void TakeDamage(int _damage)
+    public virtual void TakeDamage(int _damage)  //针对既造成伤害，又显示受击动画的函数
+    {
+        if (isDead)
+            return;
+        
+        DecreaseHealthBy(_damage);
+
+        if (currentHealth <= 0)
+        {
+            isDead = true;
+            Die();
+        }
+    }
+
+    protected virtual void DecreaseHealthBy(int _damage)    //针对只造成伤害，不显示受击动画的函数
     {
         currentHealth -= _damage;
 
-        if (currentHealth < 0)
-        {
-            Die();
-        }
+        if (onHealthChanged != null)
+            onHealthChanged();
     }
 
     public virtual void Die()
@@ -273,5 +304,10 @@ public class CharacterStats : MonoBehaviour
         float critDamage = _damage * totalCritPower;
 
         return Mathf.RoundToInt(critDamage);
+    }
+
+    public int GetMaxHealthValue()
+    {
+        return maxHealth.GetValue() + vitality.GetValue() * 3;
     }
 }
