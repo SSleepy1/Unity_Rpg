@@ -386,6 +386,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.2
   hitMat: {fileID: 2100000, guid: 62a3e4d6441ee2441a435d77e075ba58, type: 2}
+  chillColor:
+  - {r: 0.5137255, g: 0.62352943, b: 1, a: 1}
+  - {r: 0.514151, g: 0.6218391, b: 1, a: 1}
+  igniteColor:
+  - {r: 1, g: 0.3254902, b: 0.3254902, a: 1}
+  - {r: 1, g: 0.7411765, b: 0.7411765, a: 1}
+  shockColor:
+  - {r: 0.99215686, g: 0.96862745, b: 0.38039216, a: 1}
+  - {r: 1, g: 0.987119, b: 0.6650944, a: 1}
 --- !u!114 &109010507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,7 +429,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 100
+    baseValue: 1000
     modifiers: 
   armor:
     baseValue: 0
@@ -443,6 +452,7 @@ MonoBehaviour:
   isIgnited: 0
   isChilled: 0
   isShocked: 0
+  alimentsDuration: 4
   currentHealth: 0
 --- !u!70 &109010508
 CapsuleCollider2D:
@@ -1230,6 +1240,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.2
   hitMat: {fileID: 2100000, guid: 62a3e4d6441ee2441a435d77e075ba58, type: 2}
+  chillColor:
+  - {r: 0.5137255, g: 0.62352943, b: 1, a: 1}
+  - {r: 0.514151, g: 0.6218391, b: 1, a: 1}
+  igniteColor:
+  - {r: 1, g: 0.3254902, b: 0.3254902, a: 1}
+  - {r: 1, g: 0.7411765, b: 0.7411765, a: 1}
+  shockColor:
+  - {r: 0.99215686, g: 0.96862745, b: 0.38039216, a: 1}
+  - {r: 1, g: 0.987119, b: 0.6650944, a: 1}
 --- !u!114 &570891019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1276,10 +1295,10 @@ MonoBehaviour:
     baseValue: 1
     modifiers: 
   fireDamage:
-    baseValue: 12
+    baseValue: 0
     modifiers: 
   iceDamage:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   lightingDamage:
     baseValue: 0
@@ -1287,6 +1306,7 @@ MonoBehaviour:
   isIgnited: 0
   isChilled: 0
   isShocked: 0
+  alimentsDuration: 4
   currentHealth: 0
 --- !u!1 &762977634
 GameObject:

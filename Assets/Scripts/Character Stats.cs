@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class CharacterStats : MonoBehaviour
 {
+    private EntityFX fx;
     [Header("Major stats")]
     public Stat strength;//每一点力量提升百分之一攻击力和百分之一爆伤
     public Stat agility;//每一点敏捷可以提升百分之一闪避和百分之一暴击
@@ -32,6 +33,7 @@ public class CharacterStats : MonoBehaviour
     public bool isChilled;//减防20%
     public bool isShocked;//使对象攻击成功率降低20%
 
+    [SerializeField] private float alimentsDuration = 4;
     private float igniteTimer;
     private float chilledTimer;
     private float shockedTimer;
@@ -49,7 +51,10 @@ public class CharacterStats : MonoBehaviour
     {
         critPower.SetDefaultValue(150);
         currentHealth = GetMaxHealthValue();
+        
         onHealthChanged?.Invoke();
+        
+        fx = GetComponent<EntityFX>();
     }
 
     protected virtual void Update()
@@ -210,19 +215,25 @@ public class CharacterStats : MonoBehaviour
         if (_ignite)
         {
             isIgnited = _ignite;
-            igniteTimer = 2;
+            igniteTimer = alimentsDuration;
+            
+            fx.IgniteFxFor(alimentsDuration);
         }
 
         if (_chill)
         {
             isChilled = _chill;
-            chilledTimer = 2;
+            chilledTimer = alimentsDuration;
+            
+            fx.ChillFxFor(alimentsDuration);
         }
 
         if (_shock)
         {
             isShocked = _shock;
-            shockedTimer = 2;
+            shockedTimer = alimentsDuration;
+            
+            fx.ShockFxFor(alimentsDuration);
         }
     }
 
