@@ -53,6 +53,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerDashState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\Enemy_SkeletonAnimationTrigger.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonDeadState.cs" />
+    <Compile Include="Assets\Scripts\ShockStrike_Controller.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonAttackState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonMoveState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonGroundState.cs" />

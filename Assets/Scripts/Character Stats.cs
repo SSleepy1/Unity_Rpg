@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class CharacterStats : MonoBehaviour
 {
     private EntityFX fx;
+    private Entity entity;
     [Header("Major stats")]
     public Stat strength;//每一点力量提升百分之一攻击力和百分之一爆伤
     public Stat agility;//每一点敏捷可以提升百分之一闪避和百分之一暴击
@@ -41,10 +42,12 @@ public class CharacterStats : MonoBehaviour
     private float igniteDamageCooldown = .3f;
     private float igniteDamageTimer;
     private int igniteDamage;
+    [SerializeField] private GameObject shockStrikePrefab;
+    private int shockDamage;
+    public int currentHealth;
 
     private bool isDead;
 
-    public int currentHealth;
 
     public System.Action onHealthChanged;
     protected virtual void Start()
@@ -156,6 +159,11 @@ public class CharacterStats : MonoBehaviour
             _targetStats.SetupIgniteDamage(Mathf.RoundToInt(_fireDamage * .2f));
         }
 
+        if (canApplyShock)
+        {
+            _targetStats.SetupShockStrikeDamage(Mathf.RoundToInt(_lightingDamage * .1f));
+        }
+
     }
 
     private static void GetRandomDominantElement(int _fireDamage, int _iceDamage, int _lightingDamage,int maxDamage
@@ -207,12 +215,15 @@ public class CharacterStats : MonoBehaviour
 
     public void ApplyAilments(bool _ignite,bool _chill,bool _shock)
     {
+        bool canApplyIgnite = !isIgnited && !isChilled && !isShocked;
+        bool canApplyChill = !isIgnited && !isChilled && !isShocked;
+        bool canApplyShock = !isIgnited && !isChilled;
         // if (isIgnited || isChilled || isShocked)
         // {
         //     return;
         // }
 
-        if (_ignite)
+        if (_ignite && canApplyIgnite)
         {
             isIgnited = _ignite;
             igniteTimer = alimentsDuration;
@@ -220,27 +231,78 @@ public class CharacterStats : MonoBehaviour
             fx.IgniteFxFor(alimentsDuration);
         }
 
-        if (_chill)
+        if (_chill && canApplyChill)
         {
             isChilled = _chill;
             chilledTimer = alimentsDuration;
 
             float slowPercentage = .2f;
-            GetComponent<Entity>().SlowEntityBy(slowPercentage,alimentsDuration);
+            entity.SlowEntityBy(slowPercentage,alimentsDuration);
             
             fx.ChillFxFor(alimentsDuration);
         }
 
-        if (_shock)
+        if (_shock && canApplyShock)
         {
-            isShocked = _shock;
-            shockedTimer = alimentsDuration;
-            
-            fx.ShockFxFor(alimentsDuration);
+            if (!isShocked)
+            {
+                ApplyShock(_shock);
+            }
+            else
+            {
+                if (GetComponent<Player>() != null)     //防止弹射到玩家自己身上
+                    return;
+
+                HitNearaestTargetWithShockStrike();
+            }
+
+        }
+    }
+
+    public void ApplyShock(bool _shock)
+    {
+        if (isShocked)
+            return;
+        
+        isShocked = _shock;
+        shockedTimer = alimentsDuration;
+                
+        fx.ShockFxFor(alimentsDuration);
+    }
+
+    private void HitNearaestTargetWithShockStrike()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 25);
+
+        float closestDistance = Mathf.Infinity;
+        Transform closestEnemy = null;
+
+        foreach (var hit in colliders)
+        {
+            if (hit.GetComponent<Enemy>() != null && Vector2.Distance(transform.position,hit.transform.position) > 1)
+            {
+                float distanceToEnemy = Vector2.Distance(transform.position, hit.transform.position);   //两点之间的欧几里得距离
+
+                if (distanceToEnemy < closestDistance)
+                {
+                    closestDistance = distanceToEnemy;  //确保锁最近的敌人
+                    closestEnemy = hit.transform;
+                }
+            }
+
+            if (closestEnemy == null)
+                closestEnemy = transform;
+        }
+
+        if (closestEnemy != null)
+        {
+            GameObject newShockStrike = Instantiate(shockStrikePrefab, transform.position, Quaternion.identity);
+            newShockStrike.GetComponent<ShockStrike_Controller>().Setup(shockDamage,closestEnemy.GetComponent<CharacterStats>());
         }
     }
 
     public void SetupIgniteDamage(int _damage) => igniteDamage = _damage;
+    public void SetupShockStrikeDamage(int _damage) => shockDamage = _damage;
     
     public virtual void TakeDamage(int _damage)  //针对既造成伤害，又显示受击动画的函数
     {
