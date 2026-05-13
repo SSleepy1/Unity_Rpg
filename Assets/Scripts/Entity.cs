@@ -53,6 +53,22 @@ public class Entity : MonoBehaviour
         
     }
 
+    public virtual void SlowEntityBy(float _slowOercentage, float _slowDuration)
+    {
+        StartCoroutine(SlowEntityRoutine(_slowOercentage, _slowDuration));
+    }
+
+    protected virtual IEnumerator SlowEntityRoutine(float _slowOercentage, float _slowDuration)
+    {
+        yield return new WaitForSeconds(_slowDuration);
+        ReturnDefaultSpeed();
+    }
+
+    protected virtual void ReturnDefaultSpeed()
+    {
+        anim.speed = 1;
+    }
+
     public virtual void DamageEffect()
     {
         fx.StartCoroutine("flashFX");
@@ -97,7 +113,7 @@ public class Entity : MonoBehaviour
     {
         Gizmos.DrawLine(groundCheck.position,new Vector3(groundCheck.position.x,groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position,new Vector3(wallCheck.position.x + wallCheckDistance,wallCheck.position.y));
-        Gizmos.DrawWireSphere(attackCheck.position,attackCheckRadius);  //使用 center 和 radius 绘制一个线框球体
+        Gizmos.DrawWireSphere(attackCheck.position,attackCheckRadius);  //使用 center �? radius 绘制一�?��框球�?
     }
     #endregion
     #region Flip

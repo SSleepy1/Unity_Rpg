@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Player : Entity
 {
+    private Coroutine slowCoroutine;
     [Header("Attack details")] 
     public Vector2[] attackMovement;
     public float counterAttackDuration;
@@ -15,10 +16,13 @@ public class Player : Entity
     public float moveSpeed = 12f;
     public float jumpForce;
     public float swordReturnImpact;
+    private float defaultMoveSpeed;
+    private float defaultJumpForce;
     
     [Header("Dash info")]
     public float dashSpeed;
     public float dashDuration;
+    private float defaultDashSpeed;
     public float dashDir { get; private set; }
 
     public SkillManager skill { get;private set; }
@@ -72,6 +76,10 @@ public class Player : Entity
         skill = SkillManager.instance;
         
         stateMachine.Initialize(idlestate);
+        
+        defaultMoveSpeed = moveSpeed;
+        defaultJumpForce = jumpForce;
+        defaultDashSpeed = dashSpeed;
     }
 
     protected override void Update()
@@ -85,6 +93,29 @@ public class Player : Entity
             skill.crystal.CanUseSkill();
     }
 
+public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
+{
+    if (slowCoroutine != null)
+    {
+        StopCoroutine(slowCoroutine);
+    }
+
+    slowCoroutine = StartCoroutine(SlowRoutine(_slowPercentage, _slowDuration));
+}
+
+private IEnumerator SlowRoutine(float _slowPercentage, float _slowDuration)
+{
+    moveSpeed = defaultMoveSpeed * (1 - _slowPercentage);
+    jumpForce = defaultJumpForce * (1 - _slowPercentage);
+    dashSpeed = defaultDashSpeed * (1 - _slowPercentage);
+    anim.speed = 1f * (1 - _slowPercentage);
+
+    yield return new WaitForSeconds(_slowDuration);
+
+    ReturnDefaultSpeed();
+    slowCoroutine = null;
+}
+
     public void AssignNewSword(GameObject _newSword)
     {
         sword = _newSword;
@@ -96,7 +127,7 @@ public class Player : Entity
         Destroy(sword);
     }
 
-    //协程来判断是否处于忙碌状态
+    //协程来判�?��否�?于忙碌状�?
     public IEnumerator BusyFor(float _seconds)
     {
         isBusy = true;
@@ -113,7 +144,7 @@ public class Player : Entity
         yield return new WaitForSeconds(_seconds);
     }
 
-    //在动作最后一帧设置事件，将triggerCalled设置为true，作为攻击动作退出条件
+    //在动作最后一帧�?�?��件，将triggerCalled设置为true，作为攻击动作退出条�?
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();   
 
     private void CheckForDashInput()

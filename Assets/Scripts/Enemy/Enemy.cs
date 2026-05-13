@@ -42,9 +42,39 @@ public class Enemy : Entity
         
     }
 
-    public virtual void AssignLastAninmName(string _animBoolName)
+    public virtual void AssignLastAnimName(string _animBoolName)
     {
         lastAnimBoolName = _animBoolName;
+    }
+
+    private Coroutine slowCoroutine;
+
+    public override void SlowEntityBy(float _slowOercentage, float _slowDuration)
+    {
+        if (slowCoroutine != null)
+        {
+            StopCoroutine(slowCoroutine);
+        }
+
+        slowCoroutine = StartCoroutine(SlowRoutine(_slowOercentage, _slowDuration));
+    }
+
+    private IEnumerator SlowRoutine(float _slowOercentage, float _slowDuration)
+    {
+        moveSpeed = defaultMoveSpeed * (1 - _slowOercentage);
+        anim.speed = 1f * (1 - _slowOercentage);
+
+        yield return new WaitForSeconds(_slowDuration);
+
+        ReturnDefaultSpeed();
+        slowCoroutine = null;
+    }
+
+    protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+
+        moveSpeed = defaultMoveSpeed;
     }
 
     //冻结时间
