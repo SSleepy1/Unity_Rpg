@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
+    //场景中实际掉落的物品
     private SpriteRenderer sr;
     
     [SerializeField] private ItemData itemData;
@@ -20,7 +21,7 @@ public class ItemObject : MonoBehaviour
     {
         if (collision.GetComponent<Player>() != null)
         {
-            Debug.Log("Picked Up item" + itemData.itemName);
+            Inventory.instance.AddItem(itemData);
             Destroy(gameObject);
         }
     }
