@@ -111,7 +111,7 @@ public class CharacterStats : MonoBehaviour
         if (TargetCanAvoidAttack(_targetStats))
             return;
 
-        //DoPhysicalDamage(_targetStats);
+        DoPhysicalDamage(_targetStats);
         DoMagicalDamage(_targetStats);
     }
 
@@ -127,7 +127,7 @@ public class CharacterStats : MonoBehaviour
         totalDamage = CheckTargetArmor(_targetStats, totalDamage);
         _targetStats.TakeDamage(totalDamage);
     }
-
+    #region Magical damage and ailments
     public virtual void DoMagicalDamage(CharacterStats _targetStats)
     {
         int _fireDamage = fireDamage.GetValue();
@@ -205,14 +205,7 @@ public class CharacterStats : MonoBehaviour
             }
         }
     }
-
-    private static int CheckTargetResistance(CharacterStats _targetStats, int totalMagicalDamage)
-    {
-        totalMagicalDamage -= _targetStats.magicResistance.GetValue() + (_targetStats.intelligence.GetValue() * 3);
-        totalMagicalDamage  = Mathf.Clamp(totalMagicalDamage, 0, int.MaxValue);
-        return totalMagicalDamage;
-    }
-
+    
     public void ApplyAilments(bool _ignite,bool _chill,bool _shock)
     {
         bool canApplyIgnite = !isIgnited && !isChilled && !isShocked;
@@ -303,7 +296,7 @@ public class CharacterStats : MonoBehaviour
 
     public void SetupIgniteDamage(int _damage) => igniteDamage = _damage;
     public void SetupShockStrikeDamage(int _damage) => shockDamage = _damage;
-    
+    #endregion
     public virtual void TakeDamage(int _damage)  //针对既造成伤害，又显示受击动画的函数
     {
         if (isDead)
@@ -311,6 +304,9 @@ public class CharacterStats : MonoBehaviour
         
         DecreaseHealthBy(_damage);
 
+        GetComponent<Entity>().DamageImpact();
+        fx.StartCoroutine("flashFX");
+        
         if (currentHealth <= 0)
         {
             isDead = true;
@@ -330,13 +326,19 @@ public class CharacterStats : MonoBehaviour
     {
         
     }
+    private static int CheckTargetResistance(CharacterStats _targetStats, int totalMagicalDamage)
+    {
+        totalMagicalDamage -= _targetStats.magicResistance.GetValue() + (_targetStats.intelligence.GetValue() * 3);
+        totalMagicalDamage  = Mathf.Clamp(totalMagicalDamage, 0, int.MaxValue);
+        return totalMagicalDamage;
+    }
     private bool TargetCanAvoidAttack(CharacterStats _targetStats)
     {
         int totalEvasion = _targetStats.evasion.GetValue() + _targetStats.agility.GetValue();
 
         if (isShocked)
         {
-            totalEvasion = Mathf.RoundToInt(totalEvasion * 1.2f);
+            // totalEvasion = Mathf.RoundToInt(totalEvasion * 1.2f);
         }
 
         if (Random.Range(0, 100) < totalEvasion)
@@ -346,6 +348,7 @@ public class CharacterStats : MonoBehaviour
 
         return false;
     }
+    #region Stats calculations
     private int CheckTargetArmor(CharacterStats _targetStats, int totalDamage)
     {
         if (_targetStats.isChilled)
@@ -386,4 +389,5 @@ public class CharacterStats : MonoBehaviour
     {
         return maxHealth.GetValue() + vitality.GetValue() * 3;
     }
+    #endregion
 }
