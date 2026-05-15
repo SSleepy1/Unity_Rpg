@@ -6,15 +6,12 @@ using UnityEngine;
 public class ItemObject : MonoBehaviour
 {
     //场景中实际掉落的物品
-    private SpriteRenderer sr;
-    
     [SerializeField] private ItemData itemData;
 
-    private void Start()
+    private void OnValidate()
     {
-        sr = GetComponent<SpriteRenderer>();
-
-        sr.sprite = itemData.Icon;
+        GetComponent<SpriteRenderer>().sprite = itemData.Icon;
+        gameObject.name = "Item object - " + itemData.itemName;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
