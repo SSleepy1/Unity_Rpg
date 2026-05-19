@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerGroundedState.cs" />
     <Compile Include="Assets\Scripts\Controllers\Skill_Controllers\Sword_Skill_Controller.cs" />
     <Compile Include="Assets\Scripts\Items and Inventory\Inventory.cs" />
+    <Compile Include="Assets\Scripts\UI\UI_CraftSlot.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonStunnedState.cs" />
     <Compile Include="Assets\Scripts\Parallax Background.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonBattleState.cs" />
