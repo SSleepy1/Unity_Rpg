@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Parallax Background.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonBattleState.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyStateMachine.cs" />
+    <Compile Include="Assets\Scripts\UI\UI_EquipmentSlot.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMoveState.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerAnimationTriggers.cs" />
     <Compile Include="Assets\Scripts\Skills\Clone_Skill.cs" />
