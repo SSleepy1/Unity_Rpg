@@ -60,6 +60,7 @@
     <Compile Include="Assets\Scripts\Enemy\Skeleton\SkeletonGroundState.cs" />
     <Compile Include="Assets\Scripts\Stats\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyState.cs" />
+    <Compile Include="Assets\Scripts\Items and Inventory\PlayerItemDrop.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerDeadState.cs" />
     <Compile Include="Assets\Scripts\Enemy\Skeleton\Enemy_Skeleton.cs" />
     <Compile Include="Assets\Scripts\Skills\Blackhole_Skill.cs" />

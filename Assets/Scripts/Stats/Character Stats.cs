@@ -46,7 +46,7 @@ public class CharacterStats : MonoBehaviour
     private int shockDamage;
     public int currentHealth;
 
-    private bool isDead;
+    public bool isDead { get; private set; }
 
 
     public System.Action onHealthChanged;

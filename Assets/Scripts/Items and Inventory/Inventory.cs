@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Inventory : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Inventory : MonoBehaviour
     Inventory：背包管理器，负责增删查
     */
     public static Inventory instance;
+
+    public List<ItemData> startingItems;
 
     public List<InventoryItem> equipment;   //装备列表
     public Dictionary<ItemData_Equipment, InventoryItem> equipmentDictionary;
@@ -36,9 +39,13 @@ public class Inventory : MonoBehaviour
     private void Awake()
     {
         if(instance == null)
+        {
             instance = this;
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
     private void Start()
@@ -55,6 +62,16 @@ public class Inventory : MonoBehaviour
         InventoryItemSlot = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
         StashItemSlot = stashItemSlotParent.GetComponentsInChildren<UI_ItemSlot>();
         equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
+
+        AddStartingItems();
+    }
+
+    private void AddStartingItems()
+    {
+        for (int i = 0; i < startingItems.Count; i++)
+        {
+            AddItem(startingItems[i]);
+        }
     }
 
     public void EquipItem(ItemData _item)   //把新装备转成装备条目，找到同类型旧装备并替换掉，然后把新装备加入装备栏。
@@ -100,6 +117,7 @@ public class Inventory : MonoBehaviour
 
     private void UpdateSlotUI()
     {
+
         for (int i = 0; i < equipmentSlot.Length; i++)
         {
             foreach (KeyValuePair<ItemData_Equipment, InventoryItem> item in equipmentDictionary)
@@ -234,4 +252,8 @@ public class Inventory : MonoBehaviour
 
         return true;
     }
+
+    public List<InventoryItem> GetEquipmentList() => equipment;
+    
+    public List<InventoryItem> GetStashList() => stash;
 }
