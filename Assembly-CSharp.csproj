@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Entity.cs" />
     <Compile Include="Assets\Scripts\UI\UI_ItemSlot.cs" />
+    <Compile Include="Assets\Scripts\Items and Inventory\ItemEffect.cs" />
     <Compile Include="Assets\Scripts\Controllers\Skill_Controllers\Blackhole_HotKey_Controller.cs" />
     <Compile Include="Assets\Scripts\Items and Inventory\InventoryItem.cs" />
     <Compile Include="Assets\Scripts\Skills\Skill.cs" />

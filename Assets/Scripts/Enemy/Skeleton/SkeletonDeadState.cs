@@ -15,8 +15,6 @@ public class SkeletonDeadState : EnemyState
     {
         base.Enter();
         
-        Debug.Log("SkeletonDeadState Enter");
-        
         enemy.anim.SetBool(enemy.lastAnimBoolName,true);
         enemy.anim.speed = 0;
         enemy.cd.enabled = false;

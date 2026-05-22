@@ -12,7 +12,6 @@ public class ItemObjectTrigger : MonoBehaviour
             if (collision.GetComponent<CharacterStats>().isDead)
                 return;
             
-            Debug.Log("Picked up");
             myItemObject.PickupItem();
         }
     }

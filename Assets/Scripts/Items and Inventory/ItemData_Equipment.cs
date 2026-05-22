@@ -14,6 +14,8 @@ public class ItemData_Equipment : ItemData
 {
     public EquipmentType equipmentType;
 
+    public ItemEffect[] itemEffects;
+    
     [Header("Major stats")]
     public int strength;//每一点力量提升百分之一攻击力和百分之一爆伤
     public int agility;//每一点敏捷可以提升百分之一闪避和百分之一暴击
@@ -38,6 +40,14 @@ public class ItemData_Equipment : ItemData
 
     [Header("Craft requirements")] 
     public List<InventoryItem> craftingMaterials;
+
+    public void ExecuteItemEffect()
+    {
+        foreach (var item in itemEffects)
+        {
+            item.ExecuteEffect();
+        }
+    }
 
     public void AddModifires()
     {
